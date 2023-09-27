@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="papier.css" />
+  </head>
+  <body>
+    <h1>Papir kamien nozyczki apka za 100k</h1>
+    <div class="gra">
+      <p>Gramy do 10 es? Wybieraj</p>
+      <button id="paper">papier</button>
+      <button id="rock">kamień</button>
+      <button id="scissors">nożyce</button>
+    </div>
+    <div id="results">
+      <p id="roundResult">Wynik:</p>
+    </div>
+    <div id="score">
+      <p>Ile jest?</p>
+      <p id="playerScore">Player: 0</p>
+      <p id="computerScore">Komp: 0</p>
+    </div>
+    <h3 id="wynikkoncowy">goood luck</h3>
+    <button id="startButton">Start Game/Reset Game</button>
+    <audio id="clickSound" autoplay="false">
+      <source src="UWU_Sound.mp3" type="audio/mpeg" />
+    </audio>
+
+    <script>
+  
+const buttons = document.querySelectorAll('button');
+const score = document.getElementById('roundResult');
+const playerScoreDisplay = document.getElementById('playerScore');
+const computerScoreDisplay = document.getElementById('computerScore');
+const finalResult = document.getElementById('wynikkoncowy');
+const clickSound = document.getElementById('clickSound');
+clickSound.volume = 0.15;
+clickSound.playbackRate = 1.15;
+
+let playerScore = 0;
+let computerScore = 0;
+
+function playRound(playerSelection) {
+  const validChoices = ["papier", "kamień", "nożyce"];
+  const computerSelection = validChoices[Math.floor(Math.random() * 3)];
+
+  const winCondition = {
+    papier: "kamień",
+    nożyce: "papier",
+    kamień: "nożyce",
+  };
+
+  if (playerSelection === computerSelection) {
+    score.textContent = "Wynik: Remis";
+  } else if (winCondition[playerSelection] === computerSelection) {
+    score.textContent = `Wynik: Brawo ${playerSelection} bije ${computerSelection}`;
+    playerScore++;
+  } else {
+    score.textContent = `Wynik: Lipa ${computerSelection} bije ${playerSelection}`;
+    computerScore++;
+  }
+
+  playerScoreDisplay.textContent = `Player: ${playerScore}`;
+  computerScoreDisplay.textContent = `Komp: ${computerScore}`;
+  playClickSound();
+
+  if (playerScore === 10 || computerScore === 10) {
+    endGame();
+  }
+}
+
+function playClickSound() {
+  clickSound.currentTime = 0;
+  clickSound.play();
+}
+
+function handleButtonClick(e) {
+  if (playerScore < 10 && computerScore < 10) {
+    const playerSelection = e.target.textContent;
+    playRound(playerSelection);
+  }
+}
+
+function endGame() {
+  buttons.forEach((button) => {
+    button.removeEventListener('click', handleButtonClick);
+  });
+
+  if (playerScore > computerScore) {
+    finalResult.textContent = 'Zajebiscie wygrales';
+  } else if (playerScore < computerScore) {
+    finalResult.textContent = 'przejebales sory';
+  } else {
+    finalResult.textContent = 'remis';
+  }
+}
+
+function playGame() {
+  playerScore = 0;
+  computerScore = 0;
+  playerScoreDisplay.textContent = `Player: ${playerScore}`;
+  computerScoreDisplay.textContent = `Komp: ${computerScore}`;
+  finalResult.textContent = ''; 
+  score.textContent = 'Wynik: '; 
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', handleButtonClick);
+  });
+}
+
+const startButton = document.getElementById('startButton');
+startButton.addEventListener('click', playGame);
+  </script>
+    </script>
+  </body>
+</html>

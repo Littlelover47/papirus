@@ -1,0 +1,79 @@
+* {
+  padding: 0;
+  margin: 0;
+  justify-content: center;
+  text-align: center;
+  background-color: antiquewhite;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 40px;
+}
+h1 {
+  background-color: aquamarine;
+  font-weight: 900;
+  border: 3px solid salmon;
+  font-size: 40px;
+}
+.gra {
+  font-size: 40px;
+  margin: 20px;
+}
+
+#results {
+  margin: 30px;
+}
+#score {
+  padding: 30px;
+}
+#wynikkoncowy {
+  margin-top: 50px;
+}
+
+button {
+  background-color: #fbeee0;
+  border: 2px solid #422800;
+  border-radius: 30px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0 18px;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+#nieklikac {
+  color: red;
+  font-weight: 900;
+  font-size: 50px;
+  margin-top: 50px;
+  cursor: pointer;
+}
+
+#playerScore {
+  color: blue;
+}
+#computerScore {
+  color: red;
+}
+
+button {
+  background-color: #fff;
+}
+
+button:active {
+  box-shadow: #422800 2px 2px 0 0;
+  transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+  button {
+    min-width: 120px;
+    padding: 0 25px;
+  }
+}
